@@ -21,6 +21,7 @@ public class FrontViewPlayerCharacter : MonoBehaviour
 
     private Vector3 movement = Vector3.zero;
 
+    float xVel;
     const float jumpAbortSpeed = 10f;
     const float groundAcceleration = 20f;
     const float groundDeceleration = 30f;
@@ -38,10 +39,26 @@ public class FrontViewPlayerCharacter : MonoBehaviour
     }
 
     public void Move(Vector2 move, bool crouch, bool jump)
-    {
+    { 
+        if(move.x == 0)
+        {
+            xVel = Mathf.Lerp(xVel, 0, .3f);
+        }
+        else if(move.x >= 1)
+        {
+            if(xVel > -5)
+            xVel -= 0.3f;
+        }
+        else if(move.x <= 0)
+        {
+            if(xVel < 5)
+            xVel += 0.3f;
+        }
+        print(xVel);
+
         if (isGrounded)
         {
-            HandleGroundedMovement(move, crouch, jump);
+            HandleGroundedMovement(xVel, crouch, jump);
         }
         else
         {
@@ -52,13 +69,13 @@ public class FrontViewPlayerCharacter : MonoBehaviour
         isGrounded = charCtrl.isGrounded;
     }
 
-    void HandleGroundedMovement(Vector2 move, bool crouch, bool jump)
+    void HandleGroundedMovement(float move, bool crouch, bool jump)
     {
-        bool moving = move != Vector2.zero;
+//        bool moving = move != Vector2.zero;
 
         movement = new Vector2(movement.x, movement.y)
         {
-            x = move.x,
+            x = move,
             y = -gravity * stickingGravityProportion
         };
 
