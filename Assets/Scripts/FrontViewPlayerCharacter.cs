@@ -54,7 +54,6 @@ public class FrontViewPlayerCharacter : MonoBehaviour
             if(xVel < 5)
             xVel += 0.3f;
         }
-        print(xVel);
 
         if (isGrounded)
         {

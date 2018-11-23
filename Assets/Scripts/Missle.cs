@@ -2,26 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Missle : IEvent
+public class Missle : MonoBehaviour
 {
-    private float speed = 5f;
+    private Rigidbody rb;
 
-    private Vector3 startPos;
+    private float speed;
+    private float steerForce;
 
-    Transform target;
+    private Vector3 checkPoint = new Vector3(0, 5, 0);
 
-    public void Execute()
+    private Vector3 desiredVelocity;
+
+    private Vector3 currentPosition;
+
+    private Vector3 target;
+
+    public void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
+        target = GameObject.Find("PlayerController").transform.position;
+
+        desiredVelocity = target - transform.position;
+
+        rb.velocity = new Vector3(1, 1, 0);
     }
 
-    public void SetTarget(Transform target)
+    void Update()
     {
-        this.target = target;
-    }
 
-    void InstantiateMissile()
-    {
-        //Instantiate()
+        currentPosition += velocity;
+
+        transform.position = currentPosition;
+        transform.rotation = Quaternion.LookRotation(velocity);
     }
 }
