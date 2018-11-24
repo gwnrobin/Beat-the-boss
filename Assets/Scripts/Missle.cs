@@ -6,10 +6,10 @@ public class Missle : MonoBehaviour
 {
     private Rigidbody rb;
 
-    private float speed;
+    private float speed = 5f;
     private float steerForce;
 
-    private Vector3 checkPoint = new Vector3(0, 5, 0);
+    private Vector3 checkPoint = new Vector3(0, 10, 0);
 
     private Vector3 desiredVelocity;
 
@@ -24,15 +24,14 @@ public class Missle : MonoBehaviour
 
         desiredVelocity = target - transform.position;
 
-        rb.velocity = new Vector3(1, 1, 0);
+        desiredVelocity = desiredVelocity.normalized * speed;
+
+        rb.velocity = new Vector3(0, 1 * speed, 0);
     }
 
     void Update()
     {
-
-        currentPosition += velocity;
-
-        transform.position = currentPosition;
-        transform.rotation = Quaternion.LookRotation(velocity);
+        if(transform.position != target)
+        rb.velocity += desiredVelocity;
     }
 }
