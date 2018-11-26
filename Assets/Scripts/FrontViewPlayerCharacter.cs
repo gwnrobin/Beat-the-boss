@@ -39,22 +39,31 @@ public class FrontViewPlayerCharacter : MonoBehaviour
     }
 
     public void Move(Vector2 move, bool crouch, bool jump)
-    { 
+    {
         if(move.x == 0)
         {
-            xVel = Mathf.Lerp(xVel, 0, .3f);
+            xVel *= 0.9f;
         }
+        /*else
+        {
+            var multiplier = move.x > 1 ? -1 : 1;
+            if (xVel > (5 * multiplier))
+            {
+                print(xVel);
+                xVel += (0.3f * multiplier);
+            }
+        }*/
+        
         else if(move.x >= 1)
         {
             if(xVel > -5)
-            xVel -= 0.3f;
+                xVel -= 0.2f;
         }
         else if(move.x <= 0)
         {
             if(xVel < 5)
-            xVel += 0.3f;
+                xVel += 0.2f;
         }
-
         if (isGrounded)
         {
             HandleGroundedMovement(xVel, crouch, jump);
@@ -70,8 +79,6 @@ public class FrontViewPlayerCharacter : MonoBehaviour
 
     void HandleGroundedMovement(float move, bool crouch, bool jump)
     {
-//        bool moving = move != Vector2.zero;
-
         movement = new Vector2(movement.x, movement.y)
         {
             x = move,

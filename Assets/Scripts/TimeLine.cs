@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class TimeLine : MonoBehaviour
 {
-    float time = 0;
+    public float time = 0;
     bool running = false;
 
     void Update()
     {
         if (running)
         {
-            time++;
+            time += Time.deltaTime;
         }
     }
 
-    void StartTime()
+    public void StartTime()
     {
         running = true;
     }
 
-    void PauzeTime()
+    public void PauzeTime()
     {
         running = false;
     }
 
-    void ResetTime()
+    public void ResetTime()
     {
         time = 0;
     }

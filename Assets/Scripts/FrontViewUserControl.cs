@@ -28,7 +28,6 @@ public class FrontViewUserControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // read inputs
         float h = inputManager.XMov();
         bool crouch = inputManager.Ctrl();
         bool run = inputManager.Shift();
