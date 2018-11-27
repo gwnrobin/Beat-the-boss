@@ -29,7 +29,7 @@ public class LevelCreatorController : MonoBehaviour
     public void PlayMusic()
     {
         player.MusicPlay();
-        //slider.MusicPlay();
+        slider.MusicPlay();
     }
 
     public void PauseMusic()

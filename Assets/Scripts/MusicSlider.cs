@@ -10,6 +10,7 @@ public class MusicSlider : MonoBehaviour
     private Slider slider;
 
     private bool running = false;
+    private float prevValue;
 
     private void Start()
     {
@@ -17,8 +18,9 @@ public class MusicSlider : MonoBehaviour
         controller = _LevelCreatorController.GetComponent<LevelCreatorController>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
+        prevValue = slider.value;
         if(running)
         {
             slider.value += Time.deltaTime;
@@ -47,6 +49,9 @@ public class MusicSlider : MonoBehaviour
 
     public void OnValueChanged()
     {
-        controller.SkipInTime(slider.value);
+        if (slider.value > prevValue + 1)
+        {
+            controller.SkipInTime(slider.value);
+        }
     }
 }

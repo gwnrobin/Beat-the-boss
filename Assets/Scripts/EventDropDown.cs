@@ -5,16 +5,17 @@ using UnityEngine.UI;
 public class EventDropDown : MonoBehaviour
 {
     private Dropdown DropDown;
-    private IEvent[] events;
+    [SerializeField]
+    public IEvent[] events;
 
     private void Awake()
     {
         DropDown = this.GetComponent<Dropdown>();
-        events = Resources.LoadAll<GameObject>("Events");
+        //events = Resources.LoadAll<IEvent>("Events");
 
         for (int i = 0; i < events.Length; i++)
         {
-            DropDown.options.Add(new Dropdown.OptionData(events[i].name));
+            //DropDown.options.Add(new Dropdown.OptionData(events[i].name));
         }
     }
 
