@@ -4,28 +4,30 @@ using UnityEngine;
 
 public class Missile : MonoBehaviour
 {
-    public float Mass = 30;
-    public float MaxVelocity = 10;
-    public float MaxForce = 1;
+    public float mass = 15;
+    public float maxVelocity = 15;
+    public float maxForce = 2;
 
-    private Vector3 velocity = new Vector3(0, 10, -5);
-    public Transform target;
+    private Vector3 velocity;
+    private Transform target;
+
 
     private void Start()
     {
         target = GameObject.Find("PlayerController").transform;
+        velocity = new Vector3(Random.Range(-6, 6), 15, 0);
     }
 
     private void Update()
     {
         var desiredVelocity = target.transform.position - transform.position;
-        desiredVelocity = desiredVelocity.normalized * MaxVelocity;
+        desiredVelocity = desiredVelocity.normalized * maxVelocity;
 
         var steering = desiredVelocity - velocity;
-        steering = Vector3.ClampMagnitude(steering, MaxForce);
-        steering /= Mass;
+        steering = Vector3.ClampMagnitude(steering, maxForce);
+        steering /= mass;
 
-        velocity = Vector3.ClampMagnitude(velocity + steering, MaxVelocity);
+        velocity = Vector3.ClampMagnitude(velocity + steering, maxVelocity);
         transform.position += velocity * Time.deltaTime;
         transform.forward = velocity.normalized;
     }
