@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     TimeLine timeLine;// = new TimeLine();
 
-    List<TimeEvent> events = new List<TimeEvent>();
+    //List<TimeEvent> events = new List<TimeEvent>();
 
     void Awake()
     {

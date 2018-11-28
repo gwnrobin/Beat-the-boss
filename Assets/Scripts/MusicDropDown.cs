@@ -21,10 +21,16 @@ public class MusicDropDown : MonoBehaviour
         {
             musicDropDown.options.Add(new Dropdown.OptionData(resourceClips[i].name));
         }
+        SetDefault();
     }
 
     public void OnValueChanged()
     {
         controller.SetMusic(resourceClips[musicDropDown.value]);
+    }
+
+    private void SetDefault()
+    {
+        GetComponentInChildren<Text>().text = resourceClips[0].name;
     }
 }

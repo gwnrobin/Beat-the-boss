@@ -4,23 +4,32 @@ using UnityEngine.UI;
 
 public class EventDropDown : MonoBehaviour
 {
-    private Dropdown DropDown;
-    [SerializeField]
-    public IEvent[] events;
+    private Dropdown dropDown;
+
+    public Event[] events;
 
     private void Awake()
     {
-        DropDown = this.GetComponent<Dropdown>();
-        //events = Resources.LoadAll<IEvent>("Events");
-
-        for (int i = 0; i < events.Length; i++)
-        {
-            //DropDown.options.Add(new Dropdown.OptionData(events[i].name));
-        }
+        dropDown = this.GetComponent<Dropdown>();
+        events = Resources.LoadAll<Event>("Events");
     }
 
-    public void OnValueChanged()
+    private void Start()
     {
-        //controller.SetMusic(resourceClips[musicDropDown.value]);
+        for (int i = 0; i < events.Length; i++)
+        {
+            dropDown.options.Add(new Dropdown.OptionData(events[i].name));
+        }
+        SetDefault();
+    }
+
+    public Event GetEvent()
+    {
+        return events[dropDown.value];
+    }
+
+    private void SetDefault()
+    {
+        GetComponentInChildren<Text>().text = events[0].name;
     }
 }

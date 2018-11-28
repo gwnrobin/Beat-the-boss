@@ -12,7 +12,7 @@ public class MusicSlider : MonoBehaviour
     private bool running = false;
     private float prevValue;
 
-    private void Start()
+    private void Awake()
     {
         slider = GetComponent<Slider>();
         controller = _LevelCreatorController.GetComponent<LevelCreatorController>();
@@ -35,6 +35,11 @@ public class MusicSlider : MonoBehaviour
     public void MusicPause()
     {
         running = false;
+    }
+
+    public float GetValue()
+    {
+        return slider.value;
     }
 
     public void SetSliderValue(float value)

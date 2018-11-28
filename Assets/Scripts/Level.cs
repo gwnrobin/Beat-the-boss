@@ -5,9 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Level", menuName = "Level", order = 1)]
 public class Level : ScriptableObject
 {
-    public AudioClip song;
     public new string name;
+    public AudioClip song;
+    
+    public List<LevelEvent> events = new List<LevelEvent>();
+}
 
-    public List<TimeEvent> events;
+[System.Serializable]
+public struct LevelEvent
+{
+    public float time;
+    public Event e;
 }
 
