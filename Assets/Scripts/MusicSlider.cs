@@ -49,7 +49,7 @@ public class MusicSlider : MonoBehaviour
 
     public void OnValueChanged()
     {
-        if (slider.value > prevValue + 1)
+        if (slider.value > prevValue + 1 || slider.value < prevValue -1)
         {
             controller.SkipInTime(slider.value);
         }
