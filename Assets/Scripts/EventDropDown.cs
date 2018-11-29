@@ -1,12 +1,11 @@
-﻿using System.Collections;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EventDropDown : MonoBehaviour
 {
     private Dropdown dropDown;
-
-    public Event[] events;
+    private Event[] events;
 
     private void Awake()
     {

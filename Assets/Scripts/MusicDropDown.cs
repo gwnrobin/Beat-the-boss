@@ -4,9 +4,7 @@ using UnityEngine.UI;
 
 public class MusicDropDown : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _LevelCreatorController;
-    private LevelCreatorController controller;
+    public Action<AudioClip> SetMusic;
 
     private Dropdown musicDropDown;
     private AudioClip[] resourceClips;
@@ -14,7 +12,6 @@ public class MusicDropDown : MonoBehaviour
     private void Awake()
     {
         musicDropDown = this.GetComponent<Dropdown>();
-        controller = _LevelCreatorController.GetComponent<LevelCreatorController>();
         resourceClips = Resources.LoadAll<AudioClip>("Music");
 
         for (int i = 0; i < resourceClips.Length; i++)
@@ -26,7 +23,7 @@ public class MusicDropDown : MonoBehaviour
 
     public void OnValueChanged()
     {
-        controller.SetMusic(resourceClips[musicDropDown.value]);
+        SetMusic(resourceClips[musicDropDown.value]);
     }
 
     private void SetDefault()

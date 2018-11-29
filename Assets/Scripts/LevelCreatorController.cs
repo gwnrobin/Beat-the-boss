@@ -35,6 +35,8 @@ public class LevelCreatorController : MonoBehaviour
     public void Start()
     {
         SetMusic(resourceClips[0]);
+
+        mDropDown.SetMusic += SetMusic;
     }
 
     public void PlayMusic()

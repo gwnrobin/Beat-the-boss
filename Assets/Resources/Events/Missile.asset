@@ -8,14 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21a88319f70e4724e9e119258f288a97, type: 3}
-  m_Name: Level
-  m_EditorClassIdentifier: 
-  song: {fileID: 0}
-  name: 
-  events:
-  - time: 0
-  - time: 0
-  - time: 0
-  - time: 0
-  - time: 0
+  m_Script: {fileID: 0}
+  m_Name: Missile
+  m_EditorClassIdentifier: Assembly-CSharp::Event
+  name: Missile
+  eventSpawns:
+  - {fileID: 1156976490066614, guid: 5cb158043b6cfcf48a1bd2920756eab5, type: 2}

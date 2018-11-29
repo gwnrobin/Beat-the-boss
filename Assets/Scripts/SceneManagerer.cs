@@ -16,6 +16,7 @@ public class SceneManagerer: MonoBehaviour
     {
         buttonSound.Play();
         Application.Quit();
-        WarningWebVersion.SetActive(true);
+        if(!WarningWebVersion == null)
+            WarningWebVersion.SetActive(true);
     }
 }
