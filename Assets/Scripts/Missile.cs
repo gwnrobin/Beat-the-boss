@@ -31,4 +31,9 @@ public class Missile : MonoBehaviour
         transform.position += velocity * Time.deltaTime;
         transform.forward = velocity.normalized;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(this.gameObject);
+    }
 }

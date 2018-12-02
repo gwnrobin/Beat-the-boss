@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class TimeLine : MonoBehaviour
 {
-    public float time = 0;
+    public float rawTime = 0;
+    public float roundedTime = 0;
     bool running = false;
 
     void Update()
     {
         if (running)
         {
-            time += Time.deltaTime;
+            rawTime += Time.deltaTime;
+            roundedTime = Mathf.Round(rawTime * 10) / 10;
         }
     }
 
@@ -27,6 +29,6 @@ public class TimeLine : MonoBehaviour
 
     public void ResetTime()
     {
-        time = 0;
+        rawTime = 0;
     }
 }

@@ -23,7 +23,8 @@ public class LevelDropDown : MonoBehaviour
 
     public void OnValueChange()
     {
-        GameObject.Find("Variable").GetComponent<GameVariables>().SetLevel(levels[dropDown.value]);
+        GameObject.Find("Variables").GetComponent<GameVariables>().SetLevel(levels[dropDown.value]);
+
     }
 
     private void SetDefault()

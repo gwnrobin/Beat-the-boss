@@ -3,16 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class GameVariables : MonoBehaviour
 {
-    private Level selectedLevel;
+
+    public Level selectedLevel;
 
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "LevelSelector")
-        {
-            difficultyValue = difficultyManager.difficultyValue;
-            selectedMusic = manageOptions.musicDropDown.value;
-        }
-        if (SceneManager.GetActiveScene().name == "Menu")
+        if (SceneManager.GetActiveScene().name == "MainMenu")
         {
             Destroy(this.gameObject);
         }
@@ -25,5 +21,10 @@ public class GameVariables : MonoBehaviour
     public void SetLevel(Level level)
     {
         selectedLevel = level;
+    }
+    
+    public Level GetLevel()
+    {
+        return selectedLevel;
     }
 }

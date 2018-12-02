@@ -23,7 +23,7 @@ public class LevelCreator : MonoBehaviour
     {
         newLevel.events.Add(new LevelEvent()
         {
-            time = t,
+            time = Mathf.Round(t * 10) / 10,
             e = ev
         });
     }
