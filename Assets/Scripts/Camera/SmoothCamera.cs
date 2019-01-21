@@ -8,7 +8,7 @@ public class SmoothCamera : MonoBehaviour
     public Vector3 offset = new Vector3(0, 5, -10);
     public float smoothTime = 0.01f;
 
-    private void Update()
+    private void FixedUpdate()
     {
         var distance = (target.position + offset) - transform.position;
 

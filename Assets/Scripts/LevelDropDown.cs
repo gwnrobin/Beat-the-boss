@@ -1,34 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelDropDown : MonoBehaviour
+public class LevelDropDown : DropDown<Level>
 {
-    private Dropdown dropDown;
-    private Level[] levels;
-
-    private void Awake()
+    override protected void Awake()
     {
-        dropDown = this.GetComponent<Dropdown>();
-        levels = Resources.LoadAll<Level>("Levels");
-    }
-
-    private void Start()
-    {
-        for (int i = 0; i < levels.Length; i++)
-        {
-            dropDown.options.Add(new Dropdown.OptionData(levels[i].name));
-        }
-        SetDefault();
-    }
-
-    public void OnValueChange()
-    {
-        GameObject.Find("Variables").GetComponent<GameVariables>().SetLevel(levels[dropDown.value]);
-
-    }
-
-    private void SetDefault()
-    {
-        GetComponentInChildren<Text>().text = levels[0].name;
+        base.Awake();
+        resourcesArray = Resources.LoadAll<Level>("Levels");
     }
 }

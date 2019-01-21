@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private TimeLine timeLine;
+    private AudioSource audio;
 
     public Level level;
 
@@ -14,12 +15,15 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         timeLine = GetComponent<TimeLine>();
-        //level = GameObject.Find("Variables").GetComponent<GameVariables>().GetLevel();
-        //Destroy(GameObject.Find("Variables"));
+        audio = GetComponent<AudioSource>();
+
+        level = GameObject.Find("TransferLevel").GetComponent<TransferLevel>().level;
     }
 
     private void Start()
     {
+        audio.clip = level.song;
+        audio.Play();
         timeLine.StartTime();
     }
 	
@@ -27,9 +31,9 @@ public class GameManager : MonoBehaviour
     {
         for(int i = 0; i < level.events.Count; i++)
         {
-            if (level.events[i].time == timeLine.roundedTime && !cd)
+            if (level.events[i].time - level.events[i].e.inpactTime == timeLine.roundedTime && !cd)
             {
-                InstatiatieEvent(level.events[i].e.eventSpawns);
+                InstatiateEvent(level.events[i].e.eventSpawns);
                 procTime = timeLine.roundedTime;
                 cd = true;
             }
@@ -40,11 +44,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void InstatiatieEvent(List<GameObject> eventObjects)
+    private void InstatiateEvent(List<GameObject> eventObjects)
     {
         for (int i = 0; i < eventObjects.Count; i++)
         {
-            Instantiate(eventObjects[i]);
+            Instantiate(eventObjects[i], this.gameObject.transform.position, Quaternion.identity);
         }
     }
 }

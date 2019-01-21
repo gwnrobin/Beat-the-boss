@@ -2,33 +2,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EventDropDown : MonoBehaviour
+public class EventDropDown : DropDown<Event>
 {
-    private Dropdown dropDown;
-    private Event[] events;
-
-    private void Awake()
+    override protected void Awake()
     {
-        dropDown = this.GetComponent<Dropdown>();
-        events = Resources.LoadAll<Event>("Events");
-    }
-
-    private void Start()
-    {
-        for (int i = 0; i < events.Length; i++)
-        {
-            dropDown.options.Add(new Dropdown.OptionData(events[i].name));
-        }
-        SetDefault();
-    }
-
-    public Event GetEvent()
-    {
-        return events[dropDown.value];
-    }
-
-    private void SetDefault()
-    {
-        GetComponentInChildren<Text>().text = events[0].name;
+        base.Awake();
+        resourcesArray = Resources.LoadAll<Event>("Events");
     }
 }

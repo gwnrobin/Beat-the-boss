@@ -14,11 +14,12 @@ public class LevelCreatorController : MonoBehaviour
     private MusicSlider slider;
     private MusicPlayer player;
 
-    private LevelCreator creator;
+    private LevelFactory creator;
 
     private AudioClip[] resourceClips;
 
-    private AudioClip ActiveSong;
+    private AudioClip activeSong;
+    private Event activeEvent;
 
     private void Awake()
     {
@@ -27,7 +28,7 @@ public class LevelCreatorController : MonoBehaviour
         slider = _Slider.GetComponent<MusicSlider>();
         player = _JukeBox.GetComponent<MusicPlayer>();
 
-        creator = GetComponent<LevelCreator>();
+        creator = GetComponent<LevelFactory>();
 
         resourceClips = Resources.LoadAll<AudioClip>("Music");
     }
@@ -36,7 +37,9 @@ public class LevelCreatorController : MonoBehaviour
     {
         SetMusic(resourceClips[0]);
 
-        mDropDown.SetMusic += SetMusic;
+        mDropDown.SetResource += SetMusic;
+        eDropDown.SetResource += SetEvent;
+        slider.SkipForward += SkipInTime;
     }
 
     public void PlayMusic()
@@ -56,19 +59,24 @@ public class LevelCreatorController : MonoBehaviour
         player.SkipInTime(value);
     }
 
-    public void SetEvent()
+    public void PlaceEvent()
     {
-        creator.SetEvent(slider.GetValue(), eDropDown.GetEvent());
+        creator.SetEvent(slider.GetValue(), activeEvent);
     }
 
     public void SetMusic(AudioClip clip)
     {
-        ActiveSong = clip;
+        activeSong = clip;
         player.SetMusic(clip);
         slider.SetSliderMax(clip.length);
         slider.SetSliderValue(0);
         creator.SetSong(clip);
         creator.SetName(clip.name);
         PauseMusic();
+    }
+
+    public void SetEvent(Event e)
+    {
+        activeEvent = e;
     }
 }

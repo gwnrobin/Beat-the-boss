@@ -1,11 +1,10 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
+using System;
 
 public class MusicSlider : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _LevelCreatorController;
-    private LevelCreatorController controller;
+    public Action<float> SkipForward;
 
     private Slider slider;
 
@@ -15,7 +14,6 @@ public class MusicSlider : MonoBehaviour
     private void Awake()
     {
         slider = GetComponent<Slider>();
-        controller = _LevelCreatorController.GetComponent<LevelCreatorController>();
     }
 
     private void LateUpdate()
@@ -56,7 +54,7 @@ public class MusicSlider : MonoBehaviour
     {
         if (slider.value > prevValue + 1 || slider.value < prevValue -1)
         {
-            controller.SkipInTime(slider.value);
+            SkipForward(slider.value);
         }
     }
 }

@@ -15,18 +15,4 @@ MonoBehaviour:
   song: {fileID: 8300000, guid: 106f0dda765632d4b90538c0ab9de862, type: 3}
   events:
   - time: 0
-    e: {fileID: 11400000, guid: 3848f5af0b525364cadacd9c7834fee1, type: 2}
-  - time: 0
-    e: {fileID: 11400000, guid: 3848f5af0b525364cadacd9c7834fee1, type: 2}
-  - time: 0
-    e: {fileID: 11400000, guid: 3848f5af0b525364cadacd9c7834fee1, type: 2}
-  - time: 0
-    e: {fileID: 11400000, guid: 3848f5af0b525364cadacd9c7834fee1, type: 2}
-  - time: 0
-    e: {fileID: 11400000, guid: 3848f5af0b525364cadacd9c7834fee1, type: 2}
-  - time: 29
-    e: {fileID: 11400000, guid: 3848f5af0b525364cadacd9c7834fee1, type: 2}
-  - time: 62.2
-    e: {fileID: 11400000, guid: 3848f5af0b525364cadacd9c7834fee1, type: 2}
-  - time: 20.3
-    e: {fileID: 11400000, guid: 3848f5af0b525364cadacd9c7834fee1, type: 2}
+    e: {fileID: 11400000, guid: b4170341f89ce174bae92331070fda40, type: 2}
